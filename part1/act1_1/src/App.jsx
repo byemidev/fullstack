@@ -4,38 +4,53 @@
 
 //"step by step" and console always open 
 
-const Header = () => {
-  const course = 'Half Stack application development'
+const Header = (props) => {
   return (
     <div>
-      <h1>{course}</h1>
+      <h1>{props.course}</h1>
     </div>
   )
 }
 
+const Content = (props) => {
 
-const Content = () => {
-  return [
-    {part: 'Fundamentals of React', exercises : 10}, 
-    {part: 'Using props to pass data', exercises : 7},
-    {part: 'State of a component' , exercises : 14}
-  ]
+  return (
+    <div>
+      <p>
+        {props.content[0].part} {props.content[0].exercises}
+      </p>
+      <p>
+        {props.content[1].part} {props.content[1].exercises}
+      </p>
+      <p>
+        {props.content[2].part} {props.content[2].exercises}
+      </p>
+    </div>
+  )
 }
 
-const Total = (props) => { //uaing props into a component 
-  //TODO: return ()
-  //sum props return a total of {Content.exercises}
+const Total = (props) => { //Total component
+  let sum = props.content[0].exercises + props.content[1].exercises + props.content[2].exercises
+  return (
+    <p>Number of exercises {sum}</p>
+  )
 }
 
 //TODO : Content componenet rendering on App component 
 const App = () => {
-  
+
+  const course = 'Half Stack application development'
+  const content = [
+    { part: 'Fundamentals of react', exercises: 10 },
+    { part: 'Using props to pass data', exercises: 7 },
+    { part: 'State of a component', exercises: 14 }
+  ]
+
   return (
     <>
-      <div>
-        <Header/>
-        
-      </div>
+      <Header course={course} />
+      <Content content={content} />
+      <Total content={content} />
     </>
   )
 }
