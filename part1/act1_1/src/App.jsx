@@ -12,19 +12,18 @@ const Header = (props) => {
   )
 }
 
-const Content = (props) => {
+const Part = (props) => {
+  return (
+    <p>{props.part} {props.exercises}</p>
+  )
+}
 
+const Content = (props) => {
+  //Error rendering or passing props btweeen Content and Part components
   return (
     <div>
-      <p>
-        {props.content[0].part} {props.content[0].exercises}
-      </p>
-      <p>
-        {props.content[1].part} {props.content[1].exercises}
-      </p>
-      <p>
-        {props.content[2].part} {props.content[2].exercises}
-      </p>
+      <Part content={props.content[0]}/>
+      <Part content={props.content[1]}/>
     </div>
   )
 }
