@@ -5,6 +5,7 @@
 //"step by step" and console always open 
 
 const Header = (props) => {
+  console.log(props)
   return (
     <div>
       <h1>{props.course}</h1>
@@ -13,24 +14,26 @@ const Header = (props) => {
 }
 
 const Part = (props) => {
+  console.log(props)
   return (
     <p>{props.part} {props.exercises}</p>
   )
 }
 
 const Content = (props) => {
-  
+  console.log(props)
   return (
     <div>
-      <Part part={props.content[0].part} exercises = {props.content[0].exercises}/>
-      <Part part={props.content[1].part} exercises = {props.content[1].exercises}/>
-      <Part part={props.content[2].part} exercises = {props.content[2].exercises}/>
+      <Part part={props.parts[0].name} exercises = {props.parts[0].exercises}/>
+      <Part part={props.parts[1].name} exercises = {props.parts[1].exercises}/>
+      <Part part={props.parts[2].name} exercises = {props.parts[2].exercises}/>
     </div>
   )
 }
 
 const Total = (props) => { //Total component
-  let sum = props.content[0].exercises + props.content[1].exercises + props.content[2].exercises
+  console.log(props)
+  let sum = props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises
   return (
     <p>Number of exercises {sum}</p>
   )
@@ -39,18 +42,20 @@ const Total = (props) => { //Total component
 //TODO : Content componenet rendering on App component 
 const App = () => {
 
-  const course = 'Half Stack application development'
-  const content = [
-    { part: 'Fundamentals of react', exercises: 10 },
-    { part: 'Using props to pass data', exercises: 7 },
-    { part: 'State of a component', exercises: 14 }
-  ]
-
+  const course = {
+    name: 'Half Stack application development',
+    parts : [
+      { name: 'Fundamentals of react', exercises: 10 },
+      { name: 'Using props to pass data', exercises: 7 },
+      { name: 'State of a component', exercises: 14 }
+    ]
+  }
+  
   return (
     <>
-      <Header course={course} />
-      <Content content={content} />
-      <Total content={content} />
+      <Header course={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </>
   )
 }
