@@ -4,6 +4,8 @@
 
 //"step by step" and console always open 
 
+//Note: this project has only the 1.1 to 1.5 activities. Check act1_2 for the rest of Part 1 activities 
+
 const Header = (props) => {
   console.log(props)
   return (
